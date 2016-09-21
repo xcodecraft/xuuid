@@ -1,0 +1,13 @@
+.svn
+*.swp
+*.pyc
+_rg/*.data
+cscope.*
+*.log
+tags
+rigger.data
+run
+sonar-project.properties
+*.o
+test/report*
+conf/used

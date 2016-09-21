@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo " start uuid server: ${PRJ_ROOT}/bin/uuid-server -p ${PORT} -d -i $INSTANCE_ID"
+${PRJ_ROOT}/bin/uuid-server -p ${PORT} -d -i $INSTANCE_ID

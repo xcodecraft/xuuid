@@ -1,0 +1,56 @@
+_env:
+    - !R.env
+        _name    : "define"
+        _res :
+            - !R.vars
+                PRJ_NAME    : "xuuid"
+            - !R.include
+                _path :
+                    - "/data/x/tools/env_setting/env/mara_v1.yaml"
+    - !R.env
+        _name : "base"
+        _mix  : "_base"
+        _res :
+            - !R.vars
+                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic"
+                PORT         : "5001"
+
+    - !R.env
+        _name    : "dev"
+        _mix     : "define,_local_deploy,base"
+
+    - !R.env
+        _name    : "work"
+        _mix     : "define,_project_deploy,base"
+_sys:
+
+    #构建系统
+    -  !R.system
+        _name : "build"
+        _res  :
+            - !R.cmd
+                cmd  : "cd ${PRJ_ROOT}/src/service; make clean ; make install"
+
+
+    -  !R.system
+        _name : "uuid"
+        _res  :
+            - !R.vars
+                INSTANCE_ID: 0
+            - !R.shell
+                script  : "${PRJ_ROOT}/bin/start-uuid"
+                run     : "start"
+            - !R.shell
+                script  : "${PRJ_ROOT}/bin/stop-uuid"
+                run     : "stop"
+
+    -  !R.system
+        _name : "test"
+        _res:
+            - !R.vars
+                PHP_INI : "${PRJ_ROOT}/conf/used/test_php.ini"
+            - !R.using
+                modul : "mara_unit"
+                args  : !R.vars
+                    INCLUDE_PATH: "${PRJ_ROOT}/src:${PRJ_ROOT}/test/"
+                    API_ENTRY   : "${PRJ_ROOT}"

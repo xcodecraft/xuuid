@@ -1,0 +1,4 @@
+#!/bin/bash
+echo " stop uuid server: pkill -f ${PRJ_ROOT}/bin/uuid-server"
+pkill -f ${PRJ_ROOT}/bin/uuid-server
+exit 0 ;

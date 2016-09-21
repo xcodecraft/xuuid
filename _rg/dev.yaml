@@ -1,0 +1,16 @@
+_dev:
+    - !C.project
+        name : "xuuid"
+        root : "./"
+    - !C.version
+        file : "version.txt"
+    - !C.git
+        remote : "git@git.mararun.cn:mara/xuuid.git"
+    - !C.sonar
+        runner   : "/data/x/tools/sonar/bin/sonar-runner"
+        qube     : "http://sonar.mararun.cn"
+        src      : "src"
+        language : "php"
+        config:
+            - "sonar.php.coverage.reportPath=test/reports/phpunit.coverage.xml"
+            - "sonar.php.tests.reportPath=test/reports/phpunit.report.xml"
