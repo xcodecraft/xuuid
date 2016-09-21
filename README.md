@@ -1,6 +1,8 @@
 分布式uuid基础模块
 版本：uuid-1.0
 
+使用前，参写XCC环境的使用： [wiki] (https://github.com/xcodecraft/home/wiki)
+
 一，简介：
 采用了高性能的服务器框架，源于Redis系统的网络IO部分代码，具有业界公认的高性能和高稳定性。
 在单CPU虚拟机上进行简单测试，单实例每秒可以响应10000次以上的请求。
