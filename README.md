@@ -1,7 +1,11 @@
 分布式uuid基础模块
 版本：uuid-1.0
 
-一，简介：
+使用前，参写XCC环境的使用： [wiki] (https://github.com/xcodecraft/home/wiki)
+
+----
+
+# 一，简介：
 采用了高性能的服务器框架，源于Redis系统的网络IO部分代码，具有业界公认的高性能和高稳定性。
 在单CPU虚拟机上进行简单测试，单实例每秒可以响应10000次以上的请求。
 理论上每个机房部署两台服务器即可满足整个机房所有应用所有UUID的需求。
@@ -14,13 +18,13 @@
 
 提供rest json接口以及memcache get协议通用接口
 
-二，原理：
+# 二，原理：
 uuid为52bit的整型: all(52bit)=time(28bit)+instance(6bit)+seq(18bit)
 time:Linux时间戳- 1251414000
 instance：实例号（0~15， 只使用4bit保留了2bit）
 seq：自增序列号（最大支持每秒25w）
 
-三，服务端使用说明：
+# 三，服务端使用说明：
 可执行程序：bin/uuid-server
 参数选项：
 uuid server version 1.0
@@ -39,14 +43,14 @@ ha实例号
 src/uuid-server -p 5001 -d -i 0
 建议将多个实例的启动命令行写为脚本程序，防止发生错误。
 
-四，客户端使用说明：
+# 四，客户端使用说明：
 使用Memcache客户端直接连uuid-server，调用get(key)即可获得uuid。
 特殊说明：
 1，key支持忽略头尾空格，但是不支持忽略和其他特殊字符；
 例如：“get  1uuid321 ”；
 2，错误处理和以前uuid错误处理一样，切断连接。
 
-五，测试方法：
+# 五，测试方法：
 使用任何支持文本协议的Memcache客户端或者telnet均可测试。
 请求key为biz+uuid+randomId。
 示例：
