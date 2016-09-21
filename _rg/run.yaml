@@ -6,22 +6,21 @@ _env:
                 PRJ_NAME    : "xuuid"
             - !R.include
                 _path :
-                    - "/data/x/tools/env_setting/env/mara_v1.yaml"
+                    - "/data/x/etc/xcc_env/rigger/xcc_v1.yaml"
     - !R.env
         _name : "base"
         _mix  : "_base"
         _res :
             - !R.vars
-                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic"
                 PORT         : "5001"
 
     - !R.env
         _name    : "dev"
-        _mix     : "define,_local_deploy,base"
+        _mix     : "define,_local_deploy,base,_debug"
 
     - !R.env
         _name    : "work"
-        _mix     : "define,_project_deploy,base"
+        _mix     : "define,_project_deploy,base_debug"
 _sys:
 
     #构建系统
@@ -50,7 +49,7 @@ _sys:
             - !R.vars
                 PHP_INI : "${PRJ_ROOT}/conf/used/test_php.ini"
             - !R.using
-                modul : "mara_unit"
+                modul : "xcc_unit"
                 args  : !R.vars
                     INCLUDE_PATH: "${PRJ_ROOT}/src:${PRJ_ROOT}/test/"
                     API_ENTRY   : "${PRJ_ROOT}"
