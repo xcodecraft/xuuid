@@ -20,7 +20,7 @@ _env:
 
     - !R.env
         _name    : "work"
-        _mix     : "define,_project_deploy,base_debug"
+        _mix     : "define,_project_deploy,base,_relase"
 _sys:
 
     #构建系统
