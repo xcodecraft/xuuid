@@ -19,14 +19,16 @@
 提供rest json接口以及memcache get协议通用接口
 
 # 二，原理：
+```
 uuid为52bit的整型: all(52bit)=time(28bit)+instance(6bit)+seq(18bit)
 time:Linux时间戳- 1251414000
 instance：实例号（0~15， 只使用4bit保留了2bit）
 seq：自增序列号（最大支持每秒25w）
-
+``` 
 # 三，服务端使用说明：
 可执行程序：bin/uuid-server
 参数选项：
+```
 uuid server version 1.0
 -p <num>      TCP port number to listen on (default: 5001)
 -l <ip_addr>  interface to listen on (default: INADDR_ANY, all addresses)
@@ -34,6 +36,7 @@ uuid server version 1.0
 -c <num>      max simultaneous connections (default: 1024)
 -v            verbose (print errors/warnings while in event loop)
 -i <num>      the instance id, must be a number between 0 and 15
+```
 必须指定的参数：
 -p 端口号
 -d 以daemon在后台运行
@@ -54,6 +57,7 @@ src/uuid-server -p 5001 -d -i 0
 使用任何支持文本协议的Memcache客户端或者telnet均可测试。
 请求key为biz+uuid+randomId。
 示例：
+```
 wumings-MacBook-Pro:uuid yangwm$ telnet 127.0.0.1 5001
 Trying 127.0.0.1...
 Connected to 127.0.0.1.
@@ -62,7 +66,9 @@ get uuid321
 VALUE uuid 0 16
 2282689923122176
 END
+```
 性能测试：
+```
 $ php -c ./conf/used/php.ini ./test/core/uuid_benchmark.php
 0, time:1387538380, uuid:2283788130566144
 100000, time:1387538385, uuid:2283788215320576
@@ -76,3 +82,4 @@ $ php -c ./conf/used/php.ini ./test/core/uuid_benchmark.php
 900000, time:1387538429, uuid:2283788960464896
 1000000, time:1387538434, uuid:2283789045219328
 string(16) "2283789045219328"
+```
