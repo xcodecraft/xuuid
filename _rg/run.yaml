@@ -33,7 +33,7 @@ _sys:
 
 
     -  !R.system
-        _name : "uuid"
+        _name : "uuid1"
         _res  :
             - !R.vars
                 INSTANCE_ID: 0
