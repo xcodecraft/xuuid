@@ -21,6 +21,7 @@ _env:
     - !R.env
         _name    : "work"
         _mix     : "define,_project_deploy,base,_release"
+
 _sys:
 
     #构建系统
@@ -36,6 +37,18 @@ _sys:
         _res  :
             - !R.vars
                 INSTANCE_ID: 0
+            - !R.shell
+                script  : "${PRJ_ROOT}/bin/start-uuid"
+                run     : "start"
+            - !R.shell
+                script  : "${PRJ_ROOT}/bin/stop-uuid"
+                run     : "stop"
+
+    -  !R.system
+        _name : "uuid2"
+        _res  :
+            - !R.vars
+                INSTANCE_ID: 1
             - !R.shell
                 script  : "${PRJ_ROOT}/bin/start-uuid"
                 run     : "start"
